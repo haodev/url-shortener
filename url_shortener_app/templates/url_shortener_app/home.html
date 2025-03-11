@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'url_shortener_app/css/styles.css' %}">
+</head>
+<body>
+    <h1>URL Shortener</h1>
+
+    <div class="section">
+        <h2>1. Shorten URL</h2>
+        <form id="shortenForm">
+            <input type="text" id="longUrl" placeholder="Enter long URL" required>
+            <button type="submit">Shorten URL</button>
+        </form>
+        <div id="shortenResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>2. Get Original URL</h2>
+        <form id="getOriginalForm">
+            <input type="text"
+                   id="shortUrl"
+                   placeholder="Enter full short URL (e.g. http://localhost:8000/abc123)""
+                   required>
+            <button type="submit">Get Original URL</button>
+        </form>
+        <div id="getOriginalResult"></div>
+    </div>
+
+    <div class="section">
+        <h2>3. Redirect to Original URL</h2>
+        <p>Enter short URL code to redirect:</p>
+        <form id="redirectForm">
+            <input type="text" id="redirectShortUrl" placeholder="Enter short URL code" required>
+            <button type="submit">Redirect</button>
+        </form>
+        <div id="redirectResult"></div>
+    </div>
+
+    <script src="{% static 'url_shortener_app/js/main.js' %}"></script>
+</body>
+</html>
