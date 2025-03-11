@@ -12,7 +12,7 @@ document.getElementById('shortenForm').addEventListener('submit', async (e) => {
         });
         const data = await response.json();
         if (response.ok) {
-            const shortUrl = `${window.location.origin}/${data.short_url}`;
+            const shortUrl = `${data.short_url}`;
             document.getElementById('shortenResult').innerHTML = `
                 <p>Short URL: <a href="${shortUrl}" target="_blank">${shortUrl}</a></p>
             `;

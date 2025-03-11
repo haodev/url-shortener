@@ -28,9 +28,10 @@ def shorten_url(request):
     if not original_url:
         return JsonResponse({"error": "URL is required"}, status=400)
     
-    short_url = get_or_create_short_url(original_url)
+    short_code = get_or_create_short_url(original_url)
+    full_short_url = request.build_absolute_uri(f'/{short_code}')
 
-    return JsonResponse({"short_url": short_url})
+    return JsonResponse({"short_url": full_short_url})
 
 @require_http_methods(["GET"])
 def get_original_url(request):

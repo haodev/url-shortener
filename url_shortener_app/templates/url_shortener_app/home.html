@@ -22,7 +22,7 @@
         <form id="getOriginalForm">
             <input type="text"
                    id="shortUrl"
-                   placeholder="Enter full short URL (e.g. http://localhost:8000/abc123)""
+                   placeholder="Enter full short URL (e.g. http://localhost:8000/abc123)"
                    required>
             <button type="submit">Get Original URL</button>
         </form>
@@ -33,7 +33,10 @@
         <h2>3. Redirect to Original URL</h2>
         <p>Enter short URL code to redirect:</p>
         <form id="redirectForm">
-            <input type="text" id="redirectShortUrl" placeholder="Enter short URL code" required>
+            <input type="text"
+                   id="redirectShortUrl"
+                   placeholder="Enter full short URL (e.g. http://localhost:8000/abc123)"
+                   required>
             <button type="submit">Redirect</button>
         </form>
         <div id="redirectResult"></div>
