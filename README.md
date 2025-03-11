@@ -77,7 +77,7 @@ curl -X GET "http://localhost:8000/original/?short-url=http://localhost:8000/vHR
 
 #### 3. Redirect to Original URL
 Visit ```http://localhost:8000/redirect/?short-url={full_short_url}``` in a browser will direct you to the original URL.
-``` E.g. http://localhost:8000/original/?short-url=http://localhost:8000/vHRqrD```
+``` E.g. http://localhost:8000/redirect/?short-url=http://localhost:8000/vHRqrD```
 
 ### Admin Portal
 - Visit http://localhost:8000/admin
