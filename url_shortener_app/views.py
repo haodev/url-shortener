@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from .models import ShortUrl
-from .utils.short_url_generator import get_or_create_short_url
+from .utils.short_url_generator import create_short_url
 from .utils.url_helper import extract_short_code
 import json
 
@@ -28,7 +28,7 @@ def shorten_url(request):
     if not original_url:
         return JsonResponse({"error": "URL is required"}, status=400)
     
-    short_code = get_or_create_short_url(original_url)
+    short_code = create_short_url(original_url)
     full_short_url = request.build_absolute_uri(f'/{short_code}')
 
     return JsonResponse({"short_url": full_short_url})
@@ -49,7 +49,7 @@ def get_original_url(request):
     return JsonResponse({'original_url': url_obj.original_url})
 
 def redirect_to_original(request):
-    """Redirect to the original URL and increment click_count"""
+    """[used by main.js] Redirect to the original URL and increment click_count"""
     short_url = request.GET.get('short-url')
     if not short_url:
         return JsonResponse({'error': 'short-url is required'}, status=400)
@@ -65,3 +65,14 @@ def redirect_to_original(request):
     
     return redirect(url_obj.original_url)
 
+def redirect_in_browswer(request, short_code):
+    """[used directly in browser] Redirect to the original URL"""
+    url_obj = ShortUrl.objects.filter(short_url=short_code).first()
+
+    if not url_obj:
+        return JsonResponse({'error': 'No long url associated with this short url'}, status=400)
+    
+    url_obj.click_count += 1
+    url_obj.save()
+
+    return redirect(url_obj.original_url)

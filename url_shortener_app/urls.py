@@ -6,5 +6,6 @@ urlpatterns = [
 
     path('shorten/', views.shorten_url, name='shorten_url'),
     path('original/', views.get_original_url, name='get_original_url'),
-    path('redirect/', views.redirect_to_original, name='redirect_to_original'),
+    path('redirect/', views.redirect_to_original, name='api_redirect'),
+    path('<str:short_code>', views.redirect_in_browswer, name='redirect')
 ]
